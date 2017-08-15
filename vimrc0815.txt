@@ -1,5 +1,7 @@
 
 
+
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -13,8 +15,8 @@ call vundle#begin()
 
 "设置颜色
     "Plugin 'jnurmine/Zenburn'
-    "Plugin 'molokai'
-    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'molokai'
+    "Plugin 'altercation/vim-colors-solarized'
 
 "设置python缩进
     Plugin 'vim-scripts/indentpython.vim'
@@ -112,7 +114,8 @@ let g:solarized_termcolors=16
 syntax on
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
+colorscheme molokai
 
 "set jedi  https://github.com/davidhalter/jedi-vim
 "Jedi selects the first line of the completion menu: for a better typing-flow 
@@ -158,6 +161,9 @@ set autoindent      "设置自动缩进
 " set smartindent   "设置智能缩进  
 set nowrap          "设置自动换行  
 set hlsearch        "设置搜索结果高亮
+set textwidth=79
+set fo+=t
+"autocmd FileType * setlocal textwidth=80 formatoptions+=t 
 set nu   "显示行数
 " Enable folding  即在有缩进的地方开始折叠
 set foldmethod=indent
@@ -461,4 +467,6 @@ augroup vimrc_autocmds
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
 
