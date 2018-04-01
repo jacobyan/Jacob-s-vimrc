@@ -43,9 +43,6 @@ filetype off                  " required
 "设置 Fugitive: Git 集成，强烈推荐！
     Plugin 'tpope/vim-fugitive'
 
-"Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. 
-"It runs files through external syntax checkers and displays any resulting errors to the user. 
-    Plugin 'vim-syntastic/syntastic'
 
 "快速添加/修改成对的标签http://vimawesome.com/plugin/surround-vim
     Plugin 'tpope/vim-surround'
@@ -76,7 +73,7 @@ filetype off                  " required
 "状态栏增强插件，可以让你的Vim状态栏非常的美观，同时包括了buffer显示条扩展smart tab line以及集成了一些插件。
     Plugin 'vim-airline/vim-airline'
 
-"设置自动补全
+"设置自动补全，有了youcomplete，就不需要syntastic了，而且后者在保存的时候需要较长时间才能完成，很慢。
     Plugin 'valloric/YouCompleteMe'
 "补全插件,相比较youcomplete，功能少，速度慢，但是安装容易
     "Plugin 'Shougo/neocomplete.vim'
