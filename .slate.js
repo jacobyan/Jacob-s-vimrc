@@ -9,7 +9,7 @@ S.cfga({
 
 // Monitors
 var monTbolt  = "2560x1600";
-var monLaptop = "1920x1200";
+var monLaptop = "1920x1080";
 
 // Operations
 var lapFull = S.op("move", {
@@ -141,8 +141,8 @@ var oneMonitorLayout = S.lay("oneMonitor", {
 });
 
 // Defaults
-S.def(2, twoMonitorLayout);
-S.def(1, oneMonitorLayout);
+//S.def(2, twoMonitorLayout);
+//S.def(1, oneMonitorLayout);
 
 // Layout Operations
 var twoMonitor = S.op("layout", { "name" : twoMonitorLayout });
@@ -157,27 +157,66 @@ var universalLayout = function() {
   }
 };
 
+
+
+var cornerTopLeft = slate.operation("corner", {
+  "direction" : "top-left",
+  "width" : "screenSizeX/2",
+  "height" : "screenSizeY/2"
+});
+var cornerTopRight = cornerTopLeft.dup({ "direction" : "top-right" });
+var cornerBottomRight = cornerTopLeft.dup({ "direction" : "bottom-right" });
+var cornerBottomLeft = cornerTopLeft.dup({ "direction" : "bottom-left" });
+
+slate.bind("h:ctrl;cmd", cornerTopLeft);
+slate.bind("l:ctrl;cmd", cornerTopRight);
+slate.bind("j:ctrl;cmd", cornerBottomLeft);
+slate.bind("k:ctrl;cmd", cornerBottomRight );
+
+
+
+
+// 最小化窗口
+
+var resize_win = slate.operation("resize", {
+  "width" : "screenOriginX+screenSizeX/10",
+  "height" : "screenOriginY+screenSizeY/10"
+});
+
+
+var min_win = S.op("corner", {
+  "screen" : monLaptop,
+  "direction" : "bottom-left",
+  "width" : "screenSizeX/9",
+  "height" : "screenSizeY/9"
+});
+
+
+slate.bind("n:ctrl", min_win);
+//slate.bind("n:ctrl", resize_win);
+
+
+
+
 // Batch bind everything. Less typing.
 S.bnda({
   // Layout Bindings
-  "padEnter:ctrl" : universalLayout,
-  "space:ctrl" : universalLayout,
+  //"padEnter:ctrl" : universalLayout,
+  //"space:ctrl" : universalLayout,
 
   // Basic Location Bindings
-  "pad0:ctrl" : lapChat,
-  "[:ctrl" : lapChat,
-  "pad.:ctrl" : lapMain,
-  "]:ctrl" : lapMain,
-  "1:ctrl;shift" : tboltLeftBot,
-  "2:ctrl;shift" : tboltMidBot,
-  "3:ctrl;shift" : tboltRightBot,
-  "4:ctrl;shift" : tboltLeftTop,
-  "5:ctrl;shift" : tboltMidTop,
-  "6:ctrl;shift" : tboltRightTop,
-  "7:ctrl;shift" : tboltLeft,
-  "8:ctrl;shift" : tboltMid,
-  "9:ctrl;shift" : tboltRight,
-  "=:ctrl;shift" : tboltFull,
+  //"[:ctrl" : lapChat,
+  //"]:ctrl" : lapMain,
+  //"1:ctrl;shift" : tboltLeftBot,  //左下
+  //"2:ctrl;shift" : tboltMidBot,  //左下中
+  //"3:ctrl;shift" : tboltRightBot,
+  //"4:ctrl;shift" : tboltLeftTop,
+  //"5:ctrl;shift" : tboltMidTop,
+  //"6:ctrl;shift" : tboltRightTop,
+  //"7:ctrl;shift" : tboltLeft,
+  //"8:ctrl;shift" : tboltMid,
+  //"9:ctrl;shift" : tboltRight,
+  //"0:ctrl;shift" : tboltFull,
 
   // Resize Bindings
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
@@ -192,42 +231,47 @@ S.bnda({
 
     // Push Bindings  
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-  "right:ctrl;shift" : S.op("push", { "direction" : "right", "style" : "bar-resize:screenSizeX/2" }), // 右边半屏
-  "left:ctrl;shift" : S.op("push", { "direction" : "left", "style" : "bar-resize:screenSizeX/2" }), //左边半屏
-  "up:ctrl;shift" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY/2" }), //上面半屏
-  "down:ctrl;shift" : S.op("push", { "direction" : "down", "style" : "bar-resize:screenSizeY/2" }), //下面半屏
+  "l:ctrl" : S.op("push", { "direction" : "right", "style" : "bar-resize:screenSizeX/2" }), // 右边半屏
+  "h:ctrl" : S.op("push", { "direction" : "left", "style" : "bar-resize:screenSizeX/2" }), //左边半屏
+  "k:ctrl" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY/2" }), //上面半屏
+  "j:ctrl" : S.op("push", { "direction" : "down", "style" : "bar-resize:screenSizeY/2" }), //下面半屏
+    
+  "m:ctrl" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY" }), //下面半屏
+  //"n:ctrl" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY" }), //下面半屏
 
   // Nudge Bindings
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-  "right:ctrl;alt" : S.op("nudge", { "x" : "+10%", "y" : "+0" }),  //右移10%
+  "right:ctrl;alt" : S.op("nudge", { "x" : "+10%", "y" : "+0" }),  //窗口整理右移10%
   "left:ctrl;alt" : S.op("nudge", { "x" : "-10%", "y" : "+0" }),  //左移10%
   "up:ctrl;alt" : S.op("nudge", { "x" : "+0", "y" : "-10%" }),  //上移10%
   "down:ctrl;alt" : S.op("nudge", { "x" : "+0", "y" : "+10%" }),  //下移10%
 
-  // Throw Bindings
+  // Throw Bindings  全屏拖放到显示器0.1.2上面
+    // ,如果只有一个屏幕的话，那么都是全屏的操作了
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-  "pad1:ctrl;alt" : S.op("throw", { "screen" : "2", "width" : "screenSizeX", "height" : "screenSizeY" }),
-  "pad2:ctrl;alt" : S.op("throw", { "screen" : "1", "width" : "screenSizeX", "height" : "screenSizeY" }),
-  "pad3:ctrl;alt" : S.op("throw", { "screen" : "0", "width" : "screenSizeX", "height" : "screenSizeY" }),
+  "1:ctrl;alt" : S.op("throw", { "screen" : "2", "width" : "screenSizeX", "height" : "screenSizeY" }),
+  "2:ctrl;alt" : S.op("throw", { "screen" : "1", "width" : "screenSizeX", "height" : "screenSizeY" }),
+  "3:ctrl;alt" : S.op("throw", { "screen" : "0", "width" : "screenSizeX", "height" : "screenSizeY" }),
+    //往右仍全屏
   "right:ctrl;alt;cmd" : S.op("throw", { "screen" : "right", "width" : "screenSizeX", "height" : "screenSizeY" }),
   "left:ctrl;alt;cmd" : S.op("throw", { "screen" : "left", "width" : "screenSizeX", "height" : "screenSizeY" }),
   "up:ctrl;alt;cmd" : S.op("throw", { "screen" : "up", "width" : "screenSizeX", "height" : "screenSizeY" }),
   "down:ctrl;alt;cmd" : S.op("throw", { "screen" : "down", "width" : "screenSizeX", "height" : "screenSizeY" }),
 
-  // Focus Bindings
+  // Focus Bindings  这个可以在3屏铺满屏幕时候，实现快速切换----重要
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
   "l:cmd" : S.op("focus", { "direction" : "right" }),   
   "h:cmd" : S.op("focus", { "direction" : "left" }), // focus direction left 即将左边最近的窗口放到最前面来
   "k:cmd" : S.op("focus", { "direction" : "up" }),   //将上面最近的窗口放到最前面来
   "j:cmd" : S.op("focus", { "direction" : "down" }),
-  "k:cmd;alt" : S.op("focus", { "direction" : "behind" }), //同时按住cmd和alt的同时，再按住k
-  "j:cmd;alt" : S.op("focus", { "direction" : "behind" }),
-  "right:cmd" : S.op("focus", { "direction" : "right" }),
-  "left:cmd" : S.op("focus", { "direction" : "left" }),
-  "up:cmd" : S.op("focus", { "direction" : "up" }),
-  "down:cmd" : S.op("focus", { "direction" : "down" }),
-  "up:cmd;alt" : S.op("focus", { "direction" : "behind" }),
-  "down:cmd;alt" : S.op("focus", { "direction" : "behind" }),
+  //"k:cmd;alt" : S.op("focus", { "direction" : "behind" }), //同时按住cmd和alt的同时，再按住k
+  //"j:cmd;alt" : S.op("focus", { "direction" : "behind" }),
+  //"right:cmd" : S.op("focus", { "direction" : "right" }),
+  //"left:cmd" : S.op("focus", { "direction" : "left" }),
+  //"up:cmd" : S.op("focus", { "direction" : "up" }),
+  //"down:cmd" : S.op("focus", { "direction" : "down" }),
+  //"up:cmd;alt" : S.op("focus", { "direction" : "behind" }),
+  //"down:cmd;alt" : S.op("focus", { "direction" : "behind" }),
 
   // Window Hints
   "esc:cmd" : S.op("hint"),
