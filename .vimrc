@@ -228,10 +228,10 @@ set splitbelow
 set splitright
 "快捷键，ctrl+l切换到左边布局，ctrl+h切换到右边布局
 "ctrl+k切换到上面布局，ctrl+j切换到下面布局
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-S-J> <C-W><C-J>
+nnoremap <C-S-K> <C-W><C-K>
+nnoremap <C-S-L> <C-W><C-L>
+nnoremap <C-S-H> <C-W><C-H>
 
 " resize current buffer by +/- 5 
 nnoremap <right> :vertical resize -5<cr>
