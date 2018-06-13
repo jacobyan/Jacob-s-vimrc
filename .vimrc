@@ -1,5 +1,3 @@
-
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -178,7 +176,7 @@ set mouse=a
 nnoremap <leader>f za
 vnoremap <leader>f zf
 
-
+set guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 
 " Set Vim help to Chinese and utf-8 encoding 
@@ -451,3 +449,7 @@ let g:user_emmet_settings = {
   \ },
   \}
 
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
