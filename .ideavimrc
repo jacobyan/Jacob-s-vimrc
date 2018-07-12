@@ -1,0 +1,31 @@
+let mapleader=','
+inoremap jk <Esc>
+nnoremap U <C-r>
+
+set clipboard=unnamed
+
+"inoremap <S-K>   
+"nnoremap U <C-r>
+
+
+nnoremap <Leader>r :action Run<CR>
+"noremap <leader>e  :action CommentByLineComment<CR>
+"noremap <leader>e  :action CommentByBlockComment<CR>
+
+
+nnoremap <Leader>gf :action GotoFile<CR>
+nnoremap <Leader>fp :action ShowFilePath<CR>
+noremap <leader>fs :action FileStructurePopup<CR>  
+"noremap / :action Find<CR>  
+
+"nnoremap <C-S-J> <C-W><C-J>
+"nnoremap <C-S-K> <C-W><C-K>
+"nnoremap <C-S-L> <C-W><C-L>
+"nnoremap <C-S-H> <C-W><C-H>
+
+" cusor mvoement in insertmode
+"inoremap <leader>h <left>
+"inoremap <leader>l <right>
+"inoremap <leader>j <up>
+"inoremap <leader>k <down>
+set surround

@@ -9,7 +9,8 @@ filetype off                  " required
     Plugin 'gmarik/Vundle.vim'
 
     Plugin 'jistr/vim-nerdtree-tabs'
-    
+    Plugin  'lervag/vimtex'
+
 "markdown插件
     Plugin 'godlygeek/tabular' "语法高亮
     Plugin 'plasticboy/vim-markdown'
@@ -102,10 +103,11 @@ filetype plugin indent on    " required
 let g:airline#extensions#tabline#enabled = 1
 
 
-
 "map ESC to jk
 inoremap jk <ESC>
 "noremap jk <ESC>
+
+nnoremap U <C-r>
 
 "change word to uppercase, I love this very much, insert model required
 "keep your cursor on the word and press <c-u> 
@@ -195,6 +197,9 @@ endif
     "set nohlsearch
 "endfunc
 
+
+" 显示代码文档结构
+nmap <leader>1 :TagbarToggle<CR>
 
 
 " *********************************************
@@ -409,47 +414,15 @@ let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
     "imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
 
 
-"快速生成xml和css配置
-let g:user_emmet_settings = {
-  \ 'wxss': {
-  \   'extends': 'css',
-  \ },
-  \ 'wxml': {
-  \   'extends': 'html',
-  \   'aliases': {
-  \     'div': 'view',
-  \     'span': 'text',
-  \   },
-  \  'default_attributes': {
-  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
-  \     'navigator': [{'url': '', 'redirect': 'false'}],
-  \     'scroll-view': [{'bindscroll': ''}],
-  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
-  \     'icon': [{'type': 'success', 'size': '23'}],
-  \     'progress': [{'precent': '0'}],
-  \     'button': [{'size': 'default'}],
-  \     'checkbox-group': [{'bindchange': ''}],
-  \     'checkbox': [{'value': '', 'checked': ''}],
-  \     'form': [{'bindsubmit': ''}],
-  \     'input': [{'type': 'text'}],
-  \     'label': [{'for': ''}],
-  \     'picker': [{'bindchange': ''}],
-  \     'radio-group': [{'bindchange': ''}],
-  \     'radio': [{'checked': ''}],
-  \     'switch': [{'checked': ''}],
-  \     'slider': [{'value': ''}],
-  \     'action-sheet': [{'bindchange': ''}],
-  \     'modal': [{'title': ''}],
-  \     'loading': [{'bindchange': ''}],
-  \     'toast': [{'duration': '1500'}],
-  \     'audio': [{'src': ''}],
-  \     'video': [{'src': ''}],
-  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
-  \   }
-  \ },
-  \}
-
+"vim在item2中的insert的光标会变为细光标
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
+
+
+
+set tags=tags 
+set tags+=./tags
+" add new tags file
+set tags+=/Users/yanxu/anaconda2/lib/python2.7/site-packages/tags
