@@ -231,10 +231,10 @@ S.bnda({
 
     // Push Bindings  
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-  "l:ctrl" : S.op("push", { "direction" : "right", "style" : "bar-resize:screenSizeX/2" }), // 右边半屏
-  "h:ctrl" : S.op("push", { "direction" : "left", "style" : "bar-resize:screenSizeX/2" }), //左边半屏
-  "k:ctrl" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY/2" }), //上面半屏
-  "j:ctrl" : S.op("push", { "direction" : "down", "style" : "bar-resize:screenSizeY/2" }), //下面半屏
+  "l:cmd" : S.op("push", { "direction" : "right", "style" : "bar-resize:screenSizeX/2" }), // 右边半屏
+  "h:cmd" : S.op("push", { "direction" : "left", "style" : "bar-resize:screenSizeX/2" }), //左边半屏
+  "k:cmd" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY/2" }), //上面半屏
+  "j:cmd" : S.op("push", { "direction" : "down", "style" : "bar-resize:screenSizeY/2" }), //下面半屏
     
   "m:ctrl" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY" }), //下面半屏
   //"n:ctrl" : S.op("push", { "direction" : "up", "style" : "bar-resize:screenSizeY" }), //下面半屏
@@ -260,11 +260,15 @@ S.bnda({
 
   // Focus Bindings  这个可以在3屏铺满屏幕时候，实现快速切换----重要
   // NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-  "l:cmd" : S.op("focus", { "direction" : "right" }),   
-  "h:cmd" : S.op("focus", { "direction" : "left" }), // focus direction left 即将左边最近的窗口放到最前面来
-  "k:cmd" : S.op("focus", { "direction" : "up" }),   //将上面最近的窗口放到最前面来
-  "j:cmd" : S.op("focus", { "direction" : "down" }),
-  "i:cmd" : S.op("focus", { "direction" : "behind" }), //同时按住cmd和alt的同时，再按住k
+  //"l:cmd" : S.op("focus", { "direction" : "right" }),   
+  //"h:cmd" : S.op("focus", { "direction" : "left" }), // focus direction left 即将左边最近的窗口放到最前面来
+  //"k:cmd" : S.op("focus", { "direction" : "up" }),   //将上面最近的窗口放到最前面来
+  //"j:cmd" : S.op("focus", { "direction" : "down" }),
+  //"i:cmd" : S.op("focus", { "direction" : "behind" }), //同时按住cmd和alt的同时，再按住k
+    
+
+
+
   //"j:cmd;alt" : S.op("focus", { "direction" : "behind" }),
   //"right:cmd" : S.op("focus", { "direction" : "right" }),
   //"left:cmd" : S.op("focus", { "direction" : "left" }),

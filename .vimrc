@@ -11,6 +11,12 @@ filetype off                  " required
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin  'lervag/vimtex'
 
+    Plugin 'tell-k/vim-autopep8'
+    
+"新增调试窗口
+    Plugin 'skywind3000/asyncrun.vim'
+    "平滑滚动
+    "Plugin 'terryma/vim-smooth-scroll'
 "markdown插件
     Plugin 'godlygeek/tabular' "语法高亮
     Plugin 'plasticboy/vim-markdown'
@@ -231,10 +237,17 @@ set splitbelow
 set splitright
 "快捷键，ctrl+l切换到左边布局，ctrl+h切换到右边布局
 "ctrl+k切换到上面布局，ctrl+j切换到下面布局
-nnoremap <C-S-J> <C-W><C-J>
-nnoremap <C-S-K> <C-W><C-K>
-nnoremap <C-S-L> <C-W><C-L>
-nnoremap <C-S-H> <C-W><C-H>
+"nnoremap <C-S-J> <C-W><C-J>
+"nnoremap <C-S-K> <C-W><C-K>
+"nnoremap <C-S-L> <C-W><C-L>
+"nnoremap <C-S-H> <C-W><C-H>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
 
 " resize current buffer by +/- 5 
 nnoremap <right> :vertical resize -5<cr>
@@ -426,3 +439,17 @@ set tags=tags
 set tags+=./tags
 " add new tags file
 set tags+=/Users/yanxu/anaconda2/lib/python2.7/site-packages/tags
+
+
+
+"tagbar 配置
+"tagbar一打开，光标即在tagbar页面内，默认在vim打开的文件内
+let g:tagbar_autofocus = 1 
+let g:tagbar_width = 30 
+let g:tagbar_left = 1
+
+
+"noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+"noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 3)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 3)<CR>
