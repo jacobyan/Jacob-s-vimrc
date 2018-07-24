@@ -2876,8 +2876,6 @@ div.CodeMirror pre {
 }
 
 
-
-
 .edit_mode .cell.selected .CodeMirror-focused.cm-fat-cursor {
   background-color: transparent !important;
 }
