@@ -3,7 +3,7 @@ inoremap jk <Esc>
 nnoremap U <C-r>
 
 set clipboard=unnamed
-
+set nohlsearch
 "inoremap <S-K>   
 "nnoremap U <C-r>
 

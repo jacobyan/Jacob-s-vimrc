@@ -26,8 +26,8 @@ filetype off                  " required
     "Plugin 'iamcco/markdown-preview.vim'
 
 "设置配色
-    "Plugin 'molokai'
-    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'molokai'
+    "Plugin 'altercation/vim-colors-solarized'
     "Plugin 'jnurmine/Zenburn'
 
     
@@ -126,10 +126,10 @@ set clipboard=unnamed
 syntax on
 syntax enable
 set background=dark
-"colorscheme molokai
+colorscheme molokai
 "colorscheme Zenburn
 let g:solarized_termcolor=256
-colorscheme solarized
+"colorscheme solarized
 
 
 
@@ -180,6 +180,7 @@ set nu   "显示行数
 set foldmethod=indent
 set foldlevel=99
 set mouse=a
+set gcr=a:blinkon0
 " Enable folding with the spacebar
 nnoremap <leader>f za
 vnoremap <leader>f zf
